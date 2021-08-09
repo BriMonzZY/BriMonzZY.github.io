@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title>the first blog</title>
+    <link href="/BriMonzZY/BriMonzZY.github.io/2021/08/09/the-first-blog/"/>
+    <url>/BriMonzZY/BriMonzZY.github.io/2021/08/09/the-first-blog/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="/BriMonzZY/BriMonzZY.github.io/2021/08/09/hello-world/"/>
+    <url>/BriMonzZY/BriMonzZY.github.io/2021/08/09/hello-world/</url>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>记录电赛准备过程中那些踩过的坑和学到的知识</title>
+    <link href="/BriMonzZY/BriMonzZY.github.io/2021/08/09/2021%E7%94%B5%E8%B5%9B%E5%9B%BD%E8%B5%9B%E5%87%86%E5%A4%87%E5%8E%86%E7%A8%8B/"/>
+    <url>/BriMonzZY/BriMonzZY.github.io/2021/08/09/2021%E7%94%B5%E8%B5%9B%E5%9B%BD%E8%B5%9B%E5%87%86%E5%A4%87%E5%8E%86%E7%A8%8B/</url>
+    
+    <content type="html"><![CDATA[<p>[TOC]</p><hr><h1 id="记录电赛准备过程中那些踩过的坑和学到的知识"><a href="#记录电赛准备过程中那些踩过的坑和学到的知识" class="headerlink" title="记录电赛准备过程中那些踩过的坑和学到的知识"></a>记录电赛准备过程中那些踩过的坑和学到的知识</h1><p>作者：BriMonzZY</p><p>邮箱：<a href="mailto:&#49;&#x36;&#49;&#x30;&#57;&#x33;&#55;&#x38;&#56;&#x35;&#64;&#x71;&#x71;&#x2e;&#99;&#x6f;&#x6d;">&#49;&#x36;&#49;&#x30;&#57;&#x33;&#55;&#x38;&#56;&#x35;&#64;&#x71;&#x71;&#x2e;&#99;&#x6f;&#x6d;</a></p><p>gitee：<a href="https://gitee.com/brimon-zzy">https://gitee.com/brimon-zzy</a></p><p>github：<a href="https://github.com/BriMonzZY">https://github.com/BriMonzZY</a></p><h2 id="电磁曲射炮的制作"><a href="#电磁曲射炮的制作" class="headerlink" title="电磁曲射炮的制作"></a>电磁曲射炮的制作</h2><h3 id="一些踩过的坑"><a href="#一些踩过的坑" class="headerlink" title="一些踩过的坑"></a>一些踩过的坑</h3><ul><li><p>控制舵机时，等待输出的PWM稳定后，再接通舵机电源可以避免舵机疯转。</p></li><li><p>在中断中不要使用HAL_Delay()进行延时，因为HAL_Delay()本身就是使用systick中断实现的，所以如果systick中断优先级比所在中断的优先级低，systick就无法被调用，程序就会一直卡死在里面，一直卡在HAL_Delay()的while里。HAL_Delay()本身是一个被__weak修饰的虚函数，可以被用户在其他位置重新定义。</p></li><li><p>程序卡死在判断标志位的while中：(例如要判断标志位flag)在你进入循环的时候，实际上是将flag从内存加载到寄存器里面运行的，在整个循环中，flag这个变量都只是在读取寄存器里面的值。当进入中断的时候，中断里面会从内存加载flag到寄存器，修改完之后又存到内存里，然后退出中断，再回到循环里面。但这个时候循环里使用的flag并没有重新从内存加载flag这个变量，所以一直都在循环里面。<br>而你在watch里面看到的send_flag变量，是通过调试接口读取对应的内存空间的，所以watch里面看到的值已经被修改了。<strong>所以这种变量要加volatile进行修饰</strong></p><p>==需要使用volatile的几种情况：==</p><p>1、中断服务程序中修改的供其它程序检测的变量需要加volatile；</p><p>2、多任务环境下各任务间共享的标志应该加volatile；</p><p>3、存储器映射的硬件寄存器通常也要加volatile说明，因为每次对它的读写都可能有不同意义；</p><p>另外，以上这几种情况经常还要同时考虑数据的完整性（相互关联的几个标志读了一半被打断了重写），在1中可以通过关中断来实现，2 中可以禁止任务调度，3中则只能依靠硬件的良好设计了。</p></li><li><p>IIC通信的线不能接的太长，否则会无法正常的进行通讯。中断可能会影响mpu6050的dmp的读取。</p></li><li><p>在调试摄像头寻找红色的代码的时候，程序进入HardFault_Handler()中断。stm32产生硬件错误。怀疑是内存溢出、访问越界(屏幕像素越界访问、数组越界访问都会造成这种情况)。</p><p><strong>在ARM架构的处理器的寄存器中：</strong>R14寄存器又称为链接寄存器(LR)，主要用来保存上一级函数调用者的返回地址。R13寄存器又称为堆栈指针寄存器(SP)，用来维护和管理函数调用过程中的栈帧变化。</p><p><strong>找出错误代码段：</strong></p><p>在Debug模式下：</p><p>如果R14(LR) = 0xFFFFFFE9，则查找主堆栈指针MSP。</p><p>如果R14(LR) = 0xFFFFFFFD，则查找进程栈指针PSP。</p><p>MSP=0x2002B1C8</p><p>在Memory Windows中查找0x2002B1C8。</p><p>找到0x08开头的32位地址输入disassembly可以看到出问题的代码。</p><p>解决方式：将easytracer的函数放到帧中断中问题就解决了。</p></li><li><p>姿态传感器解算角度的时候，一定要注意计算数据的间隔时间来更改相应参数。</p></li></ul><h3 id="关于PID的新的理解"><a href="#关于PID的新的理解" class="headerlink" title="关于PID的新的理解"></a>关于PID的新的理解</h3><p>舵机、步进电机这种执行器属于积分部件，所以使用增量式PID进行控制即可，不需要进行i控制，而直流电机属于不带积分的部件，所以使用位置式PID进行控制。</p><h2 id="麦克纳姆轮小车的制作"><a href="#麦克纳姆轮小车的制作" class="headerlink" title="麦克纳姆轮小车的制作"></a>麦克纳姆轮小车的制作</h2><p>麦轮车的四个轮子的速度需要进行闭环控制。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>嵌入式</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>嵌入式 电赛</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  
+</search>
