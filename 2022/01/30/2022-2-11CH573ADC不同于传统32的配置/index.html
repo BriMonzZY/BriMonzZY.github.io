@@ -1,0 +1,587 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://gitee.com/BriMon-zZY/blog-image/raw/master/img/202108091546984.png">
+  <link rel="icon" href="https://gitee.com/BriMon-zZY/blog-image/raw/master/img/202108091546984.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="CH573的增益(GPA),粗调,输入缓冲如何设置">
+  <meta name="author" content="BriMonzZY">
+  <meta name="keywords" content="">
+  
+  <title>CH573ADC不同于传统32的使用配置 - BriMonzZY</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"brimonzzy.github.io","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"bfCg00a0JPB5mpqP3B0ku0wb-gzGzoHsz","app_key":"Kve1dsYJY8wn70iQY1TqmPQP","server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 60vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>BriMonzZY</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="CH573ADC不同于传统32的使用配置">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-01-30 00:00" pubdate>
+        2022年1月30日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      13
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">CH573ADC不同于传统32的使用配置</h1>
+            
+            <div class="markdown-body">
+              <h1 id="CH573的ADC"><a href="#CH573的ADC" class="headerlink" title="CH573的ADC"></a>CH573的ADC</h1><p>CH573是基于RISC-V的搭载BLE的MCU。搭载12位ADC，支持差分输入和单端输入，拥有10路外部输入通道和2路内部信号，支持DMA。并且支持触摸按键检测模块。可以选择PGA进行增益调节。ADC 输入电压范围 0V～VIO33。</p>
+<p>CH573ADC模块的框图：</p>
+<img src="https://gitee.com/BriMon-zZY/blog-image/raw/master/img/202202111504728.png" srcset="/img/loading.gif" lazyload style="zoom:80%;" />
+
+
+
+<h2 id="关于增益（PGA）"><a href="#关于增益（PGA）" class="headerlink" title="关于增益（PGA）"></a>关于增益（PGA）</h2><p>CH57x,ch58x 系列的芯片内部的ADC的实现方式是逐次比较型的(SAADC),其半量程参考电压是<strong>1.05v</strong>.默认的电压测量范围是0-2.1v<br>芯片ADC的前级提供了一个PGA,可以通过调整其放大倍数,来实现不同的量程。</p>
+<p>PGA 增益选择与输入电压范围表：</p>
+<table>
+<thead>
+<tr>
+<th>PGA增益</th>
+<th align="center">采样值到电压换算</th>
+<th>理论可测电压上限</th>
+<th>理论可测电压范围(Vref=1.05V)</th>
+<th>建议实际测量电压范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-12dB(1/4 倍)</td>
+<td align="center">(ADC/512-3)*Vref</td>
+<td>5*Vref</td>
+<td>-0.2V ～ VIO33+0.2V</td>
+<td>2.9V ～ VIO33</td>
+</tr>
+<tr>
+<td>-6dB(1/2 倍)</td>
+<td align="center">(ADC/1024-1)*Vref</td>
+<td>3*Vref</td>
+<td>-0.2V ～ 3.15V</td>
+<td>1.9V ～ 3V</td>
+</tr>
+<tr>
+<td>0db(1倍)</td>
+<td align="center">(ADC/2048)*Vref</td>
+<td>2*Vref</td>
+<td>0V ～ 2.1V</td>
+<td>0V ～ 2V</td>
+</tr>
+<tr>
+<td>6db(2倍)</td>
+<td align="center">(ADC/4096+0.5)*Vref</td>
+<td>1.5*Vref</td>
+<td>0.525V ～ 1.575V</td>
+<td>0.6V ～ 1.5V</td>
+</tr>
+</tbody></table>
+<p>Vref是内部模拟电路的电源节点 <strong>VINTA</strong> 的实际电压值，通常为 1.05V ± 0.015V。</p>
+<p>根据手册要求，VINTA引脚需要接大于0.1uF的电容到地（启用DC-DC时1uF或2.2uF）。</p>
+<p><strong>关于大幅测量范围的PGA选用：</strong>理论可测是设计可测的范围参数；实际建议使用是根据实测结果，对测试范围进行进一步细化，误差最小的建议测量范围。如果进行0-3.3V全幅的测量，有3种方法：1、如果对测量误差不是特别建议（实际20mv以内），可以直接使用-12db测量0-3.3V；2、如果对精度有要求，建议先用-12db测量一下，然后根据实际电压选择对于的增益细测，这样牺牲一点时间，测量更准；3、还有就是最常规的方法，直接分压到可测量的范围，比如测量0~3.3V，如果使用分压电阻分到0-1.65V;开启PGA对输入信号进行缩放，实际会引入测量误差，建议使用的测量范围就是为了减少测量误差。</p>
+<p>如果使用两个通道采样不同的电压，需要用到的增益不同的话，每次采样之前需要重新配置，因为ADC转换器只有一个。</p>
+<p><strong>一个例子：</strong></p>
+<p>比如我要测量一个7.4V电池的电压，一般电池满电的时候电压最高会达到7.8V左右，最低6V左右。</p>
+<p>我选用电阻分压使得电池电压降低1/3，进行测量。</p>
+<img src="https://gitee.com/BriMon-zZY/blog-image/raw/master/img/202202111555641.png" srcset="/img/loading.gif" lazyload style="zoom:67%;" />
+
+<p>可以得到AIN的电压范围在2-2.6V。显然我们选择-6dB的GPA是最好的。测得ADC的值后，进行计算：(ADC/1024-1) * 1.05 * 3，即可得到真实的电源电压值。实测误差较小。但是当VCC_BAT在5V左右时，计算得到的电压值误差较大。</p>
+<p>事实证明，如果对测量精度的要求较高，还是选择对应的GPA和对应的公式进行计算。</p>
+<h2 id="粗校准"><a href="#粗校准" class="headerlink" title="粗校准"></a>粗校准</h2><p>使用ADC之前可以进行粗校准。粗调实际上就是<strong>对GND进行校准</strong>,ADC对GND读个值,计算出固定的偏移, 然后手动去offset其他通道的值;</p>
+<p>这个偏移通常在几个LSB到几十个LSB 之间,可能是偏大, 或者偏小, 把校准值带入实际的采样值,来修正这个固定偏差。</p>
+<p>对于CH573，可以使用6/7/10/11四个通道进行校准，当使用粗调时,内部模拟开关会控制该通道的电平,这几个通道均为内部通道。如果使用了外部通道，那么需要确保外部电路不会对校准产生影响。</p>
+<p>如果对精度的要求较高，有一个AIN通道外加了基准源，那么可以不用进行粗校准而使用基准源进行校准。</p>
+<p>CH573型号改进了ADC的结构，取消了<strong>细校准</strong>。需要细校准的CH577/578/579型号的细调,实际上是调节斜率。</p>
+<h2 id="输入缓冲器"><a href="#输入缓冲器" class="headerlink" title="输入缓冲器"></a>输入缓冲器</h2><p>默认建议开启输入缓冲器，只有当外部信号源内阻小于 1KΩ时，才可以关闭输入缓冲器进行 ADC。 当采用差分输入时，建议关闭输入缓冲器。当用于 TouchKey 检测时，必须开启输入缓冲器，且 建议选择 0dB（优先）或-6dB 两种增益之一。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/">嵌入式</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/">嵌入式</a>
+                    
+                      <a class="hover-with-bg" href="/tags/CH573/">CH573</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/01/30/2022-1-30%E9%9D%9E%E5%AF%B9%E9%BD%90%E5%9C%B0%E5%9D%80%E8%AE%BF%E9%97%AE/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">非对齐地址访问的总结和疑问</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/08/15/2021-8-15CubeMX%E4%BD%BF%E7%94%A8%E7%BB%8F%E9%AA%8C/">
+                        <span class="hidden-mobile">cubeMX入门使用教程</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"bfCg00a0JPB5mpqP3B0ku0wb-gzGzoHsz","appKey":"Kve1dsYJY8wn70iQY1TqmPQP","placeholder":"说点什么吧","path":"window.location.pathname","avatar":"retro","meta":["nick","mail","link"],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"requiredFields":[]},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/metowolf/Metingjs@1.2/dist/Meting.min.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"scale":1,"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true,"scale":0.5},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
