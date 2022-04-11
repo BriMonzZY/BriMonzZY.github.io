@@ -267,7 +267,9 @@
 <p>经过Debug，我发现每次程序都会卡在while的第二次循环的 * (buf++) = raw_to_base64[((byte3 * )(src))-&gt;b0];这句话。经过Debug：</p>
 <p>初始化进入这个函数时，src的地址是0x20005c88，当第二次执行上述语句使，src的地址为0x20005c8b。</p>
 <p>我们可以发现0x20005c88 % 4 = 0，0x20005c8b % 4 = 3。显然是发生了非对齐访问造成的硬件中断。</p>
-<p>RISC-V手册（<a target="_blank" rel="noopener" href="http://riscvbook.com/chinese/RISC-V-Reader-Chinese-v2p1.pdf)%E4%B8%AD%E5%AF%B9%E4%BA%8E%E9%9D%9E%E5%AF%B9%E9%BD%90%E8%AE%BF%E9%97%AE%E7%9A%84%E6%8F%8F%E8%BF%B0%EF%BC%9A">http://riscvbook.com/chinese/RISC-V-Reader-Chinese-v2p1.pdf)中对于非对齐访问的描述：</a></p>
+<p>RISC-V手册</p>
+<p><a target="_blank" rel="noopener" href="http://riscvbook.com/chinese/RISC-V-Reader-Chinese-v2p1.pdf">http://riscvbook.com/chinese/RISC-V-Reader-Chinese-v2p1.pdf</a></p>
+<p>中对于非对齐访问的描述：</p>
 <p><img src="https://gitee.com/BriMon-zZY/blog-image/raw/master/img/202201301530482.png" srcset="/img/loading.gif" lazyload></p>
 <p><img src="https://gitee.com/BriMon-zZY/blog-image/raw/master/img/202201301528499.png" srcset="/img/loading.gif" lazyload></p>
 <p><img src="https://gitee.com/BriMon-zZY/blog-image/raw/master/img/202201301526961.png" srcset="/img/loading.gif" lazyload></p>
