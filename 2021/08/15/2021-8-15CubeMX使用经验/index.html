@@ -162,7 +162,7 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('https://gitee.com/BriMon-zZY/blog-image/raw/master/img/202108152150492.jpg') no-repeat center center;
+         style="background: url('https://raw.githubusercontent.com/BriMonzZY/blog-image/main/img/202108152153850.PNG') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -243,25 +243,25 @@
               <p>本文以STM32F429IGT6为例讲解如何使用cubeMX配置STM32， 基于HAL库进行编程。</p>
 <p>[TOC]</p>
 <h2 id="初始化工程"><a href="#初始化工程" class="headerlink" title="初始化工程"></a>初始化工程</h2><h3 id="建立工程"><a href="#建立工程" class="headerlink" title="建立工程"></a>建立工程</h3><p>ACCESS TO MCU</p>
-<p><img src="https://gitee.com/BriMon-zZY/blog-image/raw/master/img/202108152154658.png" srcset="/img/loading.gif" lazyload alt="image-20210814165034535"></p>
+<p><img src="https://raw.githubusercontent.com/BriMonzZY/blog-image/main/img/202108152154658.png" srcset="/img/loading.gif" lazyload alt="image-20210814165034535"></p>
 <p>输入型号，选择对应MCU</p>
-<p><img src="https://gitee.com/BriMon-zZY/blog-image/raw/master/img/202108152154047.png" srcset="/img/loading.gif" lazyload alt="image-20210814165132318"></p>
+<p><img src="https://raw.githubusercontent.com/BriMonzZY/blog-image/main/img/202108152154047.png" srcset="/img/loading.gif" lazyload alt="image-20210814165132318"></p>
 <h3 id="配置时钟树"><a href="#配置时钟树" class="headerlink" title="配置时钟树"></a>配置时钟树</h3><p>在RCC选项中激活外部时钟，HSE选择外部晶振作为时钟源</p>
-<p><img src="https://gitee.com/BriMon-zZY/blog-image/raw/master/img/202108152154427.png" srcset="/img/loading.gif" lazyload alt="image-20210814165414554"></p>
+<p><img src="https://raw.githubusercontent.com/BriMonzZY/blog-image/main/img/202108152154427.png" srcset="/img/loading.gif" lazyload alt="image-20210814165414554"></p>
 <p>配置时钟树，将HCLK频率设置为最高（看使用需求）</p>
-<p><img src="https://gitee.com/BriMon-zZY/blog-image/raw/master/img/202108152154743.png" srcset="/img/loading.gif" lazyload alt="image-20210814165620210"></p>
+<p><img src="https://raw.githubusercontent.com/BriMonzZY/blog-image/main/img/202108152154743.png" srcset="/img/loading.gif" lazyload alt="image-20210814165620210"></p>
 <p>在sys选项中激活DEBUG，选择serial wire。</p>
-<p><img src="https://gitee.com/BriMon-zZY/blog-image/raw/master/img/202108152154790.png" srcset="/img/loading.gif" lazyload alt="image-20210814165714498"></p>
+<p><img src="https://raw.githubusercontent.com/BriMonzZY/blog-image/main/img/202108152154790.png" srcset="/img/loading.gif" lazyload alt="image-20210814165714498"></p>
 <h3 id="配置工程"><a href="#配置工程" class="headerlink" title="配置工程"></a>配置工程</h3><p>在Project Manager中配置工程的名字，选择IDE为MDK-ARM</p>
-<p><img src="https://gitee.com/BriMon-zZY/blog-image/raw/master/img/202108152154641.png" srcset="/img/loading.gif" lazyload alt="image-20210814165909024"></p>
+<p><img src="https://raw.githubusercontent.com/BriMonzZY/blog-image/main/img/202108152154641.png" srcset="/img/loading.gif" lazyload alt="image-20210814165909024"></p>
 <p>在Code Generator中勾选选项</p>
-<p><img src="https://gitee.com/BriMon-zZY/blog-image/raw/master/img/202108152155225.png" srcset="/img/loading.gif" lazyload alt="image-20210814170028428"></p>
+<p><img src="https://raw.githubusercontent.com/BriMonzZY/blog-image/main/img/202108152155225.png" srcset="/img/loading.gif" lazyload alt="image-20210814170028428"></p>
 <p>点击GENERATE CODE即可生成工程文件</p>
-<p><img src="https://gitee.com/BriMon-zZY/blog-image/raw/master/img/202108152155775.png" srcset="/img/loading.gif" lazyload alt="image-20210814170121101"></p>
+<p><img src="https://raw.githubusercontent.com/BriMonzZY/blog-image/main/img/202108152155775.png" srcset="/img/loading.gif" lazyload alt="image-20210814170121101"></p>
 <h2 id="如何编写代码"><a href="#如何编写代码" class="headerlink" title="如何编写代码"></a>如何编写代码</h2><h3 id="注释规范"><a href="#注释规范" class="headerlink" title="注释规范"></a>注释规范</h3><p>如你所见，官网生成的工程文件中注释全部使用/**/进行注释，全篇没有出现一处//注释。所以为了一致性，尽量不要使用//注释（强迫症）。</p>
 <h3 id="用户代码"><a href="#用户代码" class="headerlink" title="用户代码"></a>用户代码</h3><p>用户编写的代码都要放入   USER CODE BEGIN   和   USER CODE END   之间，否则下一侧生成代码后用户代码就会被覆盖。</p>
 <h2 id="配置USART"><a href="#配置USART" class="headerlink" title="配置USART"></a>配置USART</h2><p>箭头位置配置为Asynchronous即可</p>
-<p><img src="https://gitee.com/BriMon-zZY/blog-image/raw/master/img/202108152155937.png" srcset="/img/loading.gif" lazyload alt="image-20210814170217959"></p>
+<p><img src="https://raw.githubusercontent.com/BriMonzZY/blog-image/main/img/202108152155937.png" srcset="/img/loading.gif" lazyload alt="image-20210814170217959"></p>
 <p>使用：</p>
 <p>包含头文件：  #include &lt;stdio.h&gt;</p>
 <p>printf重定向：   在main.c的user code 0中加入代码：</p>
@@ -269,12 +269,12 @@
 
 <p>即可在程序中使用printf</p>
 <h2 id="配置GPIO"><a href="#配置GPIO" class="headerlink" title="配置GPIO"></a>配置GPIO</h2><h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><p>点击引脚，在选择GPIO_INPUT即可</p>
-<p><img src="https://gitee.com/BriMon-zZY/blog-image/raw/master/img/202108152155795.png" srcset="/img/loading.gif" lazyload alt="image-20210814172012257"></p>
+<p><img src="https://raw.githubusercontent.com/BriMonzZY/blog-image/main/img/202108152155795.png" srcset="/img/loading.gif" lazyload alt="image-20210814172012257"></p>
 <h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><p>点击引脚，在选择GPIO_OUTPUT即可</p>
-<p><img src="https://gitee.com/BriMon-zZY/blog-image/raw/master/img/202108152155924.png" srcset="/img/loading.gif" lazyload alt="image-20210814171320220"></p>
+<p><img src="https://raw.githubusercontent.com/BriMonzZY/blog-image/main/img/202108152155924.png" srcset="/img/loading.gif" lazyload alt="image-20210814171320220"></p>
 <p>其他的模式选项怎么用会在后面介绍</p>
 <h3 id="详细配置"><a href="#详细配置" class="headerlink" title="详细配置"></a>详细配置</h3><p>侧栏中选择GPIO点击想要配置的引脚</p>
-<p><img src="https://gitee.com/BriMon-zZY/blog-image/raw/master/img/202108152155063.png" srcset="/img/loading.gif" lazyload alt="image-20210814172139106"></p>
+<p><img src="https://raw.githubusercontent.com/BriMonzZY/blog-image/main/img/202108152155063.png" srcset="/img/loading.gif" lazyload alt="image-20210814172139106"></p>
 <p>Configuration中，从上到下依次是：</p>
 <p>GPIO初始化电平</p>
 <p>GPIO输入（输出）模式</p>
@@ -288,31 +288,31 @@
 <p>PWM Generation CHx 正向PWM</p>
 <p>PWM Generation CHxN 反向PWM</p>
 <p>PWM Generation CHx 和 CHxN  组成一对互补PWM输出</p>
-<p><img src="https://gitee.com/BriMon-zZY/blog-image/raw/master/img/202108152155968.png" srcset="/img/loading.gif" lazyload alt="image-20210815095241640"></p>
+<p><img src="https://raw.githubusercontent.com/BriMonzZY/blog-image/main/img/202108152155968.png" srcset="/img/loading.gif" lazyload alt="image-20210815095241640"></p>
 <p>设置PSC和Period来设置PWM的频率。</p>
 <p>频率 = 定时器时钟（TIM挂载在的总线上的时钟） / （Prescaler 预分频 + 1）/ （Counter Period 计数值 + 1） Hz</p>
-<p><img src="https://gitee.com/BriMon-zZY/blog-image/raw/master/img/202108152155257.png" srcset="/img/loading.gif" lazyload alt="image-20210815095345037"></p>
+<p><img src="https://raw.githubusercontent.com/BriMonzZY/blog-image/main/img/202108152155257.png" srcset="/img/loading.gif" lazyload alt="image-20210815095345037"></p>
 <p> 占空比 = Pulse ( 对比值) / （C ounter Period 计数值）%</p>
-<p><img src="https://gitee.com/BriMon-zZY/blog-image/raw/master/img/202108152155430.png" srcset="/img/loading.gif" lazyload alt="image-20210815095748381"></p>
+<p><img src="https://raw.githubusercontent.com/BriMonzZY/blog-image/main/img/202108152155430.png" srcset="/img/loading.gif" lazyload alt="image-20210815095748381"></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* 使能timx的通道y */</span><br>HAL_TIM_PWM_Start(&amp;htimx,TIM_CHANNEL_y); <br><span class="hljs-comment">/* 修改timx的通道y的pwm比较值为z，即修改占空比 */</span><br>__HAL_TIM_SET_COMPARE(&amp;htimx, TIM_CHANNEL_y, z);<br></code></pre></td></tr></table></figure>
 
 
 
 <h2 id="编码器模式"><a href="#编码器模式" class="headerlink" title="编码器模式"></a>编码器模式</h2><p>适用于ABZ相的正交编码器</p>
 <p>在Combined Channels中选择Encoder Mode。</p>
-<p><img src="https://gitee.com/BriMon-zZY/blog-image/raw/master/img/202108152156270.png" srcset="/img/loading.gif" lazyload alt="image-20210815100153999"></p>
+<p><img src="https://raw.githubusercontent.com/BriMonzZY/blog-image/main/img/202108152156270.png" srcset="/img/loading.gif" lazyload alt="image-20210815100153999"></p>
 <p>Encoder Mode选择Encoder Mode TL1</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * @brief	读取对应编码器的值</span><br><span class="hljs-comment"> * @param	uint8_t TIMx	编码器的所用的TIM</span><br><span class="hljs-comment"> * @return	Encoder_TIM		编码器的值</span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">Read_Encoder</span><span class="hljs-params">(<span class="hljs-keyword">uint8_t</span> TIMx)</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-keyword">int</span> Encoder_TIM;<br>	<span class="hljs-keyword">switch</span>(TIMx) &#123;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">1</span>: Encoder_TIM= (<span class="hljs-keyword">short</span>)TIM1 -&gt; CNT;  TIM1 -&gt; CNT=<span class="hljs-number">0</span>;<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">2</span>: Encoder_TIM= (<span class="hljs-keyword">short</span>)TIM2 -&gt; CNT;  TIM2 -&gt; CNT=<span class="hljs-number">0</span>;<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">3</span>: Encoder_TIM= (<span class="hljs-keyword">short</span>)TIM3 -&gt; CNT;  TIM3 -&gt; CNT=<span class="hljs-number">0</span>;<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">4</span>: Encoder_TIM= (<span class="hljs-keyword">short</span>)TIM4 -&gt; CNT;  TIM4 -&gt; CNT=<span class="hljs-number">0</span>;<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">5</span>: Encoder_TIM= (<span class="hljs-keyword">short</span>)TIM5 -&gt; CNT;  TIM5 -&gt; CNT=<span class="hljs-number">0</span>;<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">6</span>: Encoder_TIM= (<span class="hljs-keyword">short</span>)TIM6 -&gt; CNT;  TIM6-&gt; CNT=<span class="hljs-number">0</span>;<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">7</span>: Encoder_TIM= (<span class="hljs-keyword">short</span>)TIM7 -&gt; CNT;  TIM7 -&gt; CNT=<span class="hljs-number">0</span>;<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">8</span>: Encoder_TIM= (<span class="hljs-keyword">short</span>)TIM8 -&gt; CNT;  TIM8 -&gt; CNT=<span class="hljs-number">0</span>;<span class="hljs-keyword">break</span>;<br>		<span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> 1  <span class="hljs-comment">/* 如果没有更多的TIM就改为  #if 0 */</span></span><br>		<span class="hljs-keyword">case</span> <span class="hljs-number">9</span>: Encoder_TIM= (<span class="hljs-keyword">short</span>)TIM9 -&gt; CNT;  TIM9 -&gt; CNT=<span class="hljs-number">0</span>;<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">10</span>: Encoder_TIM= (<span class="hljs-keyword">short</span>)TIM10 -&gt; CNT;  TIM10 -&gt; CNT=<span class="hljs-number">0</span>;<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">11</span>: Encoder_TIM= (<span class="hljs-keyword">short</span>)TIM11 -&gt; CNT;  TIM11 -&gt; CNT=<span class="hljs-number">0</span>;<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">12</span>: Encoder_TIM= (<span class="hljs-keyword">short</span>)TIM12 -&gt; CNT;  TIM12 -&gt; CNT=<span class="hljs-number">0</span>;<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">13</span>: Encoder_TIM= (<span class="hljs-keyword">short</span>)TIM13 -&gt; CNT;  TIM13 -&gt; CNT=<span class="hljs-number">0</span>;<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">14</span>: Encoder_TIM= (<span class="hljs-keyword">short</span>)TIM14 -&gt; CNT;  TIM14 -&gt; CNT=<span class="hljs-number">0</span>;<span class="hljs-keyword">break</span>;<br>		<span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span><br>	&#125;<br>	<span class="hljs-keyword">return</span> Encoder_TIM;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>通过设置Input Filter来设置编码器的软件滤波。</p>
-<p><img src="https://gitee.com/BriMon-zZY/blog-image/raw/master/img/202108152156194.png" srcset="/img/loading.gif" lazyload alt="image-20210815212108817"></p>
+<p><img src="https://raw.githubusercontent.com/BriMonzZY/blog-image/main/img/202108152156194.png" srcset="/img/loading.gif" lazyload alt="image-20210815212108817"></p>
 <p>（和其他模式的比较    待补充）</p>
 <h2 id="定时器中断"><a href="#定时器中断" class="headerlink" title="定时器中断"></a>定时器中断</h2><p>如图，将TIM的internal Clock打上勾，然后设置psc和period。</p>
 <p>定时频率 = 定时器时钟 / （预分频 +1）/（计数值 + 1 ）Hz。</p>
 <p>定时时间 = 1 / 定时频率。</p>
-<p><img src="https://gitee.com/BriMon-zZY/blog-image/raw/master/img/202108152156927.png" srcset="/img/loading.gif" lazyload alt="image-20210815212215907"></p>
+<p><img src="https://raw.githubusercontent.com/BriMonzZY/blog-image/main/img/202108152156927.png" srcset="/img/loading.gif" lazyload alt="image-20210815212215907"></p>
 <p>再将Global interrupt打上勾，就可以使用定时器中断了。</p>
-<p><img src="https://gitee.com/BriMon-zZY/blog-image/raw/master/img/202108152156571.png" srcset="/img/loading.gif" lazyload alt="image-20210815212323488"></p>
+<p><img src="https://raw.githubusercontent.com/BriMonzZY/blog-image/main/img/202108152156571.png" srcset="/img/loading.gif" lazyload alt="image-20210815212323488"></p>
 <p>如果是高级定时器，勾选 TIM X update interrupt 后的 Enabled 框即可。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c">HAL_TIM_Base_Start_IT(&amp;htim1);  <span class="hljs-comment">/* 使能定时器 */</span><br><br><span class="hljs-comment">/* 定时器中断回调函数 */</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">HAL_TIM_PeriodElapsedCallback</span><span class="hljs-params">(TIM_HandleTypeDef *htim)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">if</span> (htim-&gt;Instance == htim1.Instance) &#123;<br>    <br>    &#125;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(htim-&gt; Instance == htim2.Instance) &#123;<br>    <br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -321,12 +321,12 @@
 <p>修饰，代表着若函数，用户可以在用户文件中重新定义一个同名函数，最终编译器编译的时候，会选择用户定义的函数，如果用户没有重新定义这个函数，那么编译器就会执行__weak声明的函数，并且编译器不会报错。</p>
 <p>用户将中断服务函数写在回调函数中即可。</p>
 <h2 id="外部中断"><a href="#外部中断" class="headerlink" title="外部中断"></a>外部中断</h2><p>点击引脚，选择GPIO_EXTI</p>
-<p><img src="https://gitee.com/BriMon-zZY/blog-image/raw/master/img/202108152156940.png" srcset="/img/loading.gif" lazyload alt="image-20210815213517511"></p>
+<p><img src="https://raw.githubusercontent.com/BriMonzZY/blog-image/main/img/202108152156940.png" srcset="/img/loading.gif" lazyload alt="image-20210815213517511"></p>
 <p>GPIO mode 设置边沿触发模式</p>
 <p>GPIO Pull-up/Pull-down 设置上下拉</p>
-<p><img src="https://gitee.com/BriMon-zZY/blog-image/raw/master/img/202108152156580.png" srcset="/img/loading.gif" lazyload alt="image-20210815213558683"></p>
+<p><img src="https://raw.githubusercontent.com/BriMonzZY/blog-image/main/img/202108152156580.png" srcset="/img/loading.gif" lazyload alt="image-20210815213558683"></p>
 <p>最后使能中断</p>
-<p><img src="https://gitee.com/BriMon-zZY/blog-image/raw/master/img/202108152156622.png" srcset="/img/loading.gif" lazyload alt="image-20210815213718000"></p>
+<p><img src="https://raw.githubusercontent.com/BriMonzZY/blog-image/main/img/202108152156622.png" srcset="/img/loading.gif" lazyload alt="image-20210815213718000"></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/* 外部触发回调函数 */</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">HAL_GPIO_EXTI_Callback</span><span class="hljs-params">(<span class="hljs-keyword">uint16_t</span> GPIO_Pin)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">if</span>(GPIO_Pin == PWM_Pin) &#123;<br>    <br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
@@ -335,7 +335,7 @@
 <p>在Pinout View中设置了GPIO的mode后，在设置对应的外设，外设的引脚就会被映射到你所选择的引脚。</p>
 <p>比如点击PI5选择TIM8_CH1，然后在在TIM8中设置CH1为PWM输出，那么PI5就会作为PWM输出脚。</p>
 <p>PC6同理。</p>
-<p><img src="https://gitee.com/BriMon-zZY/blog-image/raw/master/img/202108152156151.png" srcset="/img/loading.gif" lazyload alt="image-20210815214556670"></p>
+<p><img src="https://raw.githubusercontent.com/BriMonzZY/blog-image/main/img/202108152156151.png" srcset="/img/loading.gif" lazyload alt="image-20210815214556670"></p>
 <p>以上是我个人使用cubeMX的一些经验，我会不断的补充。</p>
 
             </div>

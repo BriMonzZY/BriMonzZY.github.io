@@ -242,7 +242,7 @@
             <div class="markdown-body">
               <h1 id="CH573的ADC"><a href="#CH573的ADC" class="headerlink" title="CH573的ADC"></a>CH573的ADC</h1><p>CH573是基于RISC-V的搭载BLE的MCU。搭载12位ADC，支持差分输入和单端输入，拥有10路外部输入通道和2路内部信号，支持DMA。并且支持触摸按键检测模块。可以选择PGA进行增益调节。ADC 输入电压范围 0V～VIO33。</p>
 <p>CH573ADC模块的框图：</p>
-<img src="https://gitee.com/BriMon-zZY/blog-image/raw/master/img/202202111504728.png" srcset="/img/loading.gif" lazyload style="zoom:80%;" />
+<img src="https://raw.githubusercontent.com/BriMonzZY/blog-image/main/img/202202111504728.png" srcset="/img/loading.gif" lazyload style="zoom:80%;" />
 
 
 
@@ -294,7 +294,7 @@
 <p><strong>一个例子：</strong></p>
 <p>比如我要测量一个7.4V电池的电压，一般电池满电的时候电压最高会达到7.8V左右，最低6V左右。</p>
 <p>我选用电阻分压使得电池电压降低1/3，进行测量。</p>
-<img src="https://gitee.com/BriMon-zZY/blog-image/raw/master/img/202202111555641.png" srcset="/img/loading.gif" lazyload style="zoom:67%;" />
+<img src="https://raw.githubusercontent.com/BriMonzZY/blog-image/main/img/202202111555641.png" srcset="/img/loading.gif" lazyload style="zoom:67%;" />
 
 <p>可以得到AIN的电压范围在2-2.6V。显然我们选择-6dB的GPA是最好的。测得ADC的值后，进行计算：(ADC/1024-1) * 1.05 * 3，即可得到真实的电源电压值。实测误差较小。但是当VCC_BAT在5V左右时，计算得到的电压值误差较大。</p>
 <p>事实证明，如果对测量精度的要求较高，还是选择对应的GPA和对应的公式进行计算。</p>
